@@ -28,7 +28,7 @@ public class ChunksGenerator3D : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-        chunks = new Chunk[ChunkSize, ChunkSize];
+        chunks = new Chunk[(ChunkRenderDistance*2)+1, (ChunkRenderDistance*2)+1];
 
         seed = Random.Range(-1000f, 1000f);
 
@@ -104,6 +104,7 @@ public class ChunksGenerator3D : MonoBehaviour
                     }
                 }
 
+                //print($"{cx} {cy}");
                 chunks[cx, cy] = chunkS;
 
                 cy++;
@@ -113,5 +114,10 @@ public class ChunksGenerator3D : MonoBehaviour
         }
     }
 
-    public float GetPerlin(float x, float y, float seed) => Mathf.PerlinNoise(seed + x / 10, seed + y / 10);
+	private void OnGUI()
+	{
+        GUI.Label(new Rect(10, 10, 200, 20), $"{player.transform.position} | {ActualChunk}");
+    }
+
+	public float GetPerlin(float x, float y, float seed) => Mathf.PerlinNoise(seed + x / 10, seed + y / 10);
 }
