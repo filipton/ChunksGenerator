@@ -8,6 +8,15 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+		if (Input.GetKey(KeyCode.F))
+		{
+            speed += .001f;
+		}
+        else if (Input.GetKey(KeyCode.G))
+        {
+            speed -= .001f;
+        }
+
         float horizontal = Input.GetAxis("Horizontal") * speed;
         float vertical = Input.GetAxis("Vertical") * speed;
 
